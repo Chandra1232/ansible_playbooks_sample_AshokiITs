@@ -1,9 +1,3 @@
-#This playbbok will install HTTP server,wget and vim package using loops.
-
-✅ Recommended Modern Approach (Best Practice)
-
-with_items is deprecated. Use a list instead.
-
 ---
 - hosts: localhost
   connection: local
@@ -12,11 +6,12 @@ with_items is deprecated. Use a list instead.
   tasks:
     - name: Install list of packages
       yum:
-        name:
-          - httpd
-          - wget
-          - vim
-          - zip
-          - unzip
+        name: "{{ item }}"
         state: present
+      with_items:
+        - httpd
+        - wget
+        - vim
+        - zip
+        - unzip
 ...
